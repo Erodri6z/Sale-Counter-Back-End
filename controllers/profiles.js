@@ -30,4 +30,4 @@ async function index(req, res) {
 //   }
 // }
 
-export { index, addPhoto }
+export { index }
