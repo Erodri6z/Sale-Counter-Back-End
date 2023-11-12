@@ -11,6 +11,19 @@ async function index(req, res) {
   }
 }
 
+async function getProfile(req, res) {
+  try{
+    Profile.findById(req.params.id)
+    .populate('sales')
+    .then(profile => {
+      res.json(profile)
+    })
+  }catch{
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 // async function addPhoto(req, res) {
 //   try {
 //     const imageFile = req.files.photo.path
@@ -30,4 +43,4 @@ async function index(req, res) {
 //   }
 // }
 
-export { index }
+export { index, getProfile }
