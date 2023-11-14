@@ -14,11 +14,29 @@ async function index(req, res) {
 async function getProfile(req, res) {
   try{
     Profile.findById(req.params.id)
-    .populate('sales')
     .then(profile => {
-      res.json(profile)
+      profile.populate("sales")
+      .then(propProfile => {
+        res.json(propProfile)
+      })
     })
   }catch{
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+async function createSaleCounter(req, res) {
+  try{
+    Profile.findById(req.params.id)
+    .then(profile => {
+      profile.sales.push(req.body)
+      profile.save()
+      .then(() => {
+        res.json(profile)
+      })
+    })
+  }catch {
     console.log(err)
     res.status(500).json(err)
   }
@@ -43,4 +61,4 @@ async function getProfile(req, res) {
 //   }
 // }
 
-export { index, getProfile }
+export { getProfile, createSaleCounter as create }
