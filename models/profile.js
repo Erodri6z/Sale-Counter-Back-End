@@ -18,10 +18,10 @@ const salesSchema = new Schema({
   accesoriesDollarAmount:{
     type: Number
   },
-  generalElectricsCount: {
+  generalElectronicsCount: {
     type: Number
   },
-  generalElectricsDollarAmount: {
+  generalElectronicsDollarAmount: {
     type: Number
   }
 })

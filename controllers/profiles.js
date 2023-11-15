@@ -42,5 +42,21 @@ async function createSaleCounter(req, res) {
   }
 }
 
+async function clearCounter(req, res) {
+  try{
+    Profile.findById(req.params.id)
+    .then(profile => {
+      profile.sales = []
+      profile.save()
+      .then(() => {
+        res.json(profile)
+      })
+    })
+  } catch {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
 
-export { getProfile, createSaleCounter as create }
+
+export { getProfile as show, createSaleCounter as create, clearCounter }
