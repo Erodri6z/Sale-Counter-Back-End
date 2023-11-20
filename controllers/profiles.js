@@ -58,5 +58,21 @@ async function clearCounter(req, res) {
   }
 }
 
+async function updateCounter(req, res) {
+  try{
+    Profile.findById(req.params.id)
+    .then(profile => {
+      profile.sales[0] = res.body
+      profile.sales()
+      .then(() => {
+        res.json(profile)
+      })
+    })
+  }catch {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
 
-export { getProfile as show, createSaleCounter as create, clearCounter }
+
+export { getProfile as show, createSaleCounter as create, clearCounter, updateCounter as update}
