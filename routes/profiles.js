@@ -12,7 +12,7 @@ router.use(decodeUserFromToken)
 router.get('/:id', checkAuth, profilesCtrl.show)
 router.post('/:id', checkAuth, profilesCtrl.create)
 router.put('/:id', checkAuth, profilesCtrl.clearCounter)
-router.put('/:id', checkAuth, profilesCtrl.update)
+router.put('/:id/update', checkAuth, profilesCtrl.update)
 // router.put('/:id/add-photo', checkAuth, profilesCtrl.addPho/to)
 
 export { router }

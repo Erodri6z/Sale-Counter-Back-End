@@ -62,8 +62,9 @@ async function updateCounter(req, res) {
   try{
     Profile.findById(req.params.id)
     .then(profile => {
-      profile.sales[0] = res.body
-      profile.sales()
+      console.log("res.body", req.body)
+      profile.sales = req.body
+      profile.save()
       .then(() => {
         res.json(profile)
       })
